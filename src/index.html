@@ -14,7 +14,7 @@
 
       <!--Walker Form-->
     <section>
-      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="get, post">
+      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="POST">
         <h3>Create Walker</h3>
         <input
           type="text"
@@ -222,34 +222,6 @@
 
       
 
-
-      
-      document.getElementById("WalkerForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Get form data
-        var formData = new FormData(this);
-
-        // Make a POST request to your server
-        fetch('https://wagglyfunctions.azurewebsites.net/api/postregisterwalker', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          if (response.status === 204) {
-            // Reset the form on success
-            this.reset();
-            alert("Form submitted successfully!");
-          } else {
-            // Handle other status codes (optional)
-            alert("Error: " + response.status);
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert("An error occurred, please try again later.");
-        });
-      });
 
 
 
