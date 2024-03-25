@@ -9,11 +9,11 @@ app = func.FunctionApp()
 
 def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document]) -> func.HttpResponse:
     walker_id = str(uuid.uuid4())
-    walker_firstname = req.body.get('walkerfirstname')
-    walker_lastname = req.body.get('walkerlastname')
-    walker_location = req.body.get('walkerlocation')
-    walker_phonenumber = req.body.get('walkerphonenumber')
-    walker_email = req.body.get('walkeremail')
+    walker_firstname = req.params.get('walkerfirstname')
+    walker_lastname = req.params.get('walkerlastname')
+    walker_location = req.params.get('walkerlocation')
+    walker_phonenumber = req.params.get('walkerphonenumber')
+    walker_email = req.params.get('walkeremail')
 
     if walker_firstname and walker_lastname and walker_location and walker_phonenumber and walker_email:
         WalkerDocument.set(func.Document.from_dict({"id": walker_id, "walker_firstname": walker_firstname, "walker_lastname": walker_lastname, "walker_location": walker_location, "walker_phonenumber": walker_phonenumber, "walker_email": walker_email}))
