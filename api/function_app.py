@@ -19,7 +19,7 @@ def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document])
         WalkerDocument.set(func.Document.from_dict({"id": walker_id, "walker_firstname": walker_firstname, "walker_lastname": walker_lastname, "walker_location": walker_location, "walker_phonenumber": walker_phonenumber, "walker_email": walker_email}))
         return func.HttpResponse(f"stored details: {walker_id}\n{walker_firstname}\n{walker_lastname}\n{walker_location}\n{walker_phonenumber}\n{walker_email}\n")
     else:
-        return func.HttpResponse("unable to run function you melt", status_code = 200)
+        return func.HttpResponse(status_code = 400)
 
 
 
