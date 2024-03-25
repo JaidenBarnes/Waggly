@@ -7,7 +7,7 @@ app = func.FunctionApp()
 @app.route(route="postregisterwalker", auth_level=func.AuthLevel.ANONYMOUS)
 @app.cosmos_db_output(arg_name="dogWalkerDocument", database_name="waggly-database", container_name="waggly_container", connection="CosmosDbConnectionSetting")
 
-def createWalker(req: func.HttpRequest, dogWalkerDocument: func.out[func.document]) -> func.HttpResponse:
+def createWalker(req: func.HttpRequest, dogWalkerDocument: func.Out[func.Document]) -> func.HttpResponse:
     walker_id = str(uuid.uuid4())
     walker_firstname = req.params.get('walkerfirstname')
     walker_lastname = req.params.get('walkerlastname')
