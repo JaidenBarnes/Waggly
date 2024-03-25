@@ -14,7 +14,7 @@
 
       <!--Walker Form-->
     <section>
-      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="get, post" onsubmit="testClearForm">
+      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="get, post">
         <h3>Create Walker</h3>
         <input
           type="text"
@@ -219,6 +219,37 @@
       }
 
 
+        document.getElementById("WalkerForm").addEventListener("submit", function(event) {
+          // Prevent the default form submission
+          event.preventDefault();
+
+          // Perform any additional actions here, such as AJAX requests
+
+          // Display the alert box
+          alert("Done");
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
 
 
 
@@ -271,34 +302,6 @@
         }
       }
 
-
-
-
-
-
-
-
-      function testClearForm(event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
-        // Make an AJAX request to the API endpoint
-        fetch('/api/postregisterwalker', {
-            method: 'GET, POST',
-            body: new FormData(document.getElementById("WalkerForm"))
-        })
-        .then(response => {
-            if (response.ok) {
-                // Call clearWalkerForm function after the API call succeeds
-                clearWalkerForm(document.getElementById("WalkerForm").getElementsByTagName("input"));
-            } else {
-                console.error('Error:', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
 
 
 
