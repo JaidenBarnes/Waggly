@@ -1,0 +1,368 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Wagg.ly</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Wagg.ly</h1>
+    </header>
+
+
+      <!--Walker Form-->
+    <section>
+      <form id="WalkerForm" action="https://wagglyfunctionapp.azurewebsites.net/api/postregisterwalker" method="get, post">
+        <h3>Create Walker</h3>
+        <input
+          type="text"
+          name="walkerfirstname"
+          id="firstName"
+          placeholder="First Name"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="walkerlastname"
+          id="lastName"
+          placeholder="Last Name"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="walkerlocation"
+          id="location"
+          placeholder="Location"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alpahbetic characters"
+        />
+        <input
+          type="tel"
+          name="walkerphonenumber"
+          id="phoneNumber"
+          placeholder="Phone Number"
+          required
+          pattern="\d{11}"
+          title="Please enter a valid 11-digit phone number"
+        />
+        <input
+          type="email"
+          name="walkeremail"
+          id="email"
+          placeholder="Email"
+          required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          title="Please enter a valid email address"
+        />
+        <button
+          type="submit"
+          id="submitWalkerButton" >Submit</button>
+
+      </form>
+
+      
+
+    <br />
+
+
+
+    <section>
+      <!--Pet Form-->
+      <form id="PetForm" action="/submit" method="post">
+        <h3>Create Woofer</h3>
+        <input
+          type="text"
+          name="PetName"
+          id="petName"
+          placeholder="Pet Name"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="PetBreed"
+          id="petBreed"
+          placeholder="Pet Breed"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="OwnerFirstName"
+          id="OwnerfirstName"
+          placeholder="Owner First Name"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="OwnerLastName"
+          id="OwnerlastName"
+          placeholder="Owner Last Name"
+          required
+          pattern="[A-Za-z]+"
+          title="Please enter only alphabetic characters"
+        />
+        <input
+          type="text"
+          name="HouseNumber"
+          id="houseNumber"
+          placeholder="House Number"
+          required
+        />
+        <input
+          type="text"
+          name="Location"
+          id="location"
+          placeholder="Location"
+          required
+        />
+        <input
+          type="text"
+          name="Postcode"
+          id="postcode"
+          placeholder="Postcode"
+          required
+          pattern="[A-Za-z0-9]+"
+          title="Please enter only alphanumeric characters for Postcode"
+        />
+        <input
+          type="tel"
+          name="PhoneNumber"
+          id="phoneNumber"
+          placeholder="Phone Number"
+          required
+          pattern="\d{11}"
+          title="Please enter a valid 11 digit phone number"
+        />
+        <input
+          type="email"
+          name="Email"
+          id="email"
+          placeholder="Email"
+          required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          title="Please enter a valid email address"
+        />
+        <button type="button" id="submitPetButton" onclick="validatePetForm()">
+          Submit
+        </button>
+      </form>
+      
+
+    <br /><br /><br /><br /><br /><br />
+
+    <script>
+      var inputs;
+      //Input Validation
+      function validateWalkerForm() {
+        var form = document.getElementById("WalkerForm");
+        inputs = form.getElementsByTagName("input");
+        var WalkerFormValid = false;
+
+        // If button says 'Restart?' remove green from button
+        var submitWalkerButton = document.getElementById("submitWalkerButton");
+        if (submitWalkerButton.innerText === "Restart?") {
+          for (var i = 0; i < inputs.length; i++) {
+            inputs[i].classList.remove("valid");
+          }
+          clearWalkerForm(inputs);
+          return;
+        }
+
+        // Validation for 'required' attribute
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].hasAttribute("required") && inputs[i].value === "") {
+            inputs[i].classList.add("invalid");
+            WalkerFormValid = false;
+          } else {
+            inputs[i].classList.remove("invalid");
+            inputs[i].classList.add("valid");
+            WalkerFormValid = true;
+          }
+        }
+
+        // Validation for 'pattern' attribute
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].hasAttribute("pattern")) {
+            if (
+              !new RegExp(inputs[i].getAttribute("pattern")).test(
+                inputs[i].value
+              )
+            ) {
+              inputs[i].classList.remove("valid");
+              inputs[i].classList.add("invalid");
+              WalkerFormValid = false;
+            } else {
+              inputs[i].classList.remove("invalid");
+              inputs[i].classList.add("valid");
+            }
+          }
+        }
+        // Submit data to DB if Validation is confirmed freeze input then call API
+        if (WalkerFormValid) {
+          for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = true;
+        }
+          postWalker(); //<---------- This begins the API Call
+        }
+      }
+
+
+
+
+
+
+
+
+
+      //<!--Input Validation On the Pet Form-->;
+      function validatePetForm() {
+        var form = document.getElementById("PetForm");
+        inputs = form.getElementsByTagName("input");
+        var PetFormValid = true;
+
+        // If button says 'Restart?' remove green from button then clear form
+        var submitPetButton = form.getElementsByTagName("button")[0];
+        if (submitPetButton.innerText === "Restart?") {
+          clearPetForm(inputs);
+          return;
+        }
+
+        // Validation for 'required' attribute
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].hasAttribute("required") && inputs[i].value === "") {
+            inputs[i].classList.add("invalid");
+            PetFormValid = false;
+          } else {
+            inputs[i].classList.remove("invalid");
+            inputs[i].classList.add("valid");
+          }
+        }
+
+        // Validation for 'pattern' attribute
+        for (var i = 0; i < inputs.length; i++) {
+          if (
+            inputs[i].hasAttribute("pattern") &&
+            !new RegExp(inputs[i].getAttribute("pattern")).test(inputs[i].value)
+          ) {
+            inputs[i].classList.remove("valid");
+            inputs[i].classList.add("invalid");
+            PetFormValid = false;
+          }
+        }
+
+        // Submit data to DB if Validation is confirmed freeze inputs then call API
+        if (PetFormValid) {
+          for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = true;
+        }
+          postPet(inputs); //<------ Begins API Call
+        }
+      }
+
+
+
+
+
+
+
+
+
+      
+
+      // Clear the Walker Form
+      function clearWalkerForm(inputs) {
+        var form = document.getElementById("WalkerForm");
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = false;
+          inputs[i].classList.remove("valid");
+        }
+
+        form.getElementsByTagName("button")[0].innerText = "Submit";
+        form.reset();
+      }
+
+      // Clear the Pet Form and unfreeze inputs
+      function clearPetForm(inputs) {
+        var form = document.getElementById("PetForm");
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = false;
+          inputs[i].classList.remove("valid");
+        }
+        form.getElementsByTagName("button")[0].innerText = "Submit";
+        form.reset();
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //<!--API Calls-->;
+      //<!--POST-->;
+
+      function postWalker() {
+    // Construct the data object to send to the Azure Function
+    var data = {
+        FirstName: document.getElementById("firstName").value,
+        LastName: document.getElementById("lastName").value,
+        Location: document.getElementById("location").value,
+        PhoneNumber: document.getElementById("phoneNumber").value,
+        Email: document.getElementById("email").value
+    };
+
+        // IF API SUCCESS RETURNED:
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        // Turn Submit button green
+        var submitWalkerButton = document.getElementById("submitWalkerButton");
+        submitWalkerButton.innerText = "Submitted!";
+        submitWalkerButton.classList.add("green-outline");
+        // After x seconds, button name is renamed & colour is reverted
+        setTimeout(function () {
+            submitWalkerButton.innerText = "Restart?";
+            submitWalkerButton.classList.remove("green-outline");
+        }, 3000);
+}
+
+
+
+      function postPet() {
+        // IF SUCCESS RETURNED:
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+        // Turn Submit button green
+        var submitPetButton = document.getElementById("submitPetButton");
+        submitPetButton.innerText = "Submitted!";
+        submitPetButton.classList.add("green-outline");
+
+        // After x seconds, button name is renamed & colour is reverted
+        setTimeout(function () {
+          submitPetButton.innerText = "Restart?";
+          submitPetButton.classList.remove("green-outline");
+        }, 3000);
+
+        // ELSE API FAILS: ERROR CODE XXX
+      }
+
+     
+    </script>
+  </body>
+</html>
