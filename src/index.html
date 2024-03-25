@@ -170,15 +170,15 @@
         inputs = form.getElementsByTagName("input");
         var WalkerFormValid = false;
 
-        // If button says 'Restart?' remove green from button
-        var submitWalkerButton = document.getElementById("submitWalkerButton");
-        if (submitWalkerButton.innerText === "Restart?") {
-          for (var i = 0; i < inputs.length; i++) {
-            inputs[i].classList.remove("valid");
-          }
-          clearWalkerForm(inputs);
-          return;
-        }
+        // // If button says 'Restart?' remove green from button
+        // var submitWalkerButton = document.getElementById("submitWalkerButton");
+        // if (submitWalkerButton.innerText === "Restart?") {
+        //   for (var i = 0; i < inputs.length; i++) {
+        //     inputs[i].classList.remove("valid");
+        //   }
+        //   clearWalkerForm(inputs);
+        //   return;
+        // }
 
         // Validation for 'required' attribute
         for (var i = 0; i < inputs.length; i++) {
@@ -217,14 +217,40 @@
         } else {
           return;
         }
+      }
 
 
+      
 
-        document.getElementById("WalkerForm").addEventListener("submit", function(event) {
-          // Prevent the default form submission
-          event.preventDefault();
-          validateWalkerForm();
+
+      
+      document.getElementById("WalkerForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form data
+        var formData = new FormData(this);
+
+        // Make a POST request to your server
+        fetch('https://wagglyfunctions.azurewebsites.net/api/postregisterwalker', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (response.status === 204) {
+            // Reset the form on success
+            this.reset();
+            alert("Form submitted successfully!");
+          } else {
+            // Handle other status codes (optional)
+            alert("Error: " + response.status);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("An error occurred, please try again later.");
         });
+      });
+
 
 
 
