@@ -14,7 +14,7 @@
 
       <!--Walker Form-->
     <section>
-      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="get, post" onsubmit="validateWalkerForm">
+      <form id="WalkerForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwalker" method="get, post" onsubmit="testClearForm">
         <h3>Create Walker</h3>
         <input
           type="text"
@@ -278,6 +278,30 @@
 
 
 
+      function testClearForm(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Make an AJAX request to the API endpoint
+        fetch('/api/postregisterwalker', {
+            method: 'GET, POST',
+            body: new FormData(document.getElementById("WalkerForm"))
+        })
+        .then(response => {
+            if (response.ok) {
+                // Call clearWalkerForm function after the API call succeeds
+                clearWalkerForm(document.getElementById("WalkerForm").getElementsByTagName("input"));
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+
 
       
 
@@ -304,63 +328,6 @@
         form.reset();
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-      //<!--API Calls-->;
-      //<!--POST-->;
-
-      function postWalker() {
-    // Construct the data object to send to the Azure Function
-    var data = {
-        FirstName: document.getElementById("firstName").value,
-        LastName: document.getElementById("lastName").value,
-        Location: document.getElementById("location").value,
-        PhoneNumber: document.getElementById("phoneNumber").value,
-        Email: document.getElementById("email").value
-    };
-
-        // IF API SUCCESS RETURNED:
-        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        // Turn Submit button green
-        var submitWalkerButton = document.getElementById("submitWalkerButton");
-        submitWalkerButton.innerText = "Submitted!";
-        submitWalkerButton.classList.add("green-outline");
-        // After x seconds, button name is renamed & colour is reverted
-        setTimeout(function () {
-            submitWalkerButton.innerText = "Restart?";
-            submitWalkerButton.classList.remove("green-outline");
-        }, 3000);
-}
-
-
-
-      function postPet() {
-        // IF SUCCESS RETURNED:
-        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-        // Turn Submit button green
-        var submitPetButton = document.getElementById("submitPetButton");
-        submitPetButton.innerText = "Submitted!";
-        submitPetButton.classList.add("green-outline");
-
-        // After x seconds, button name is renamed & colour is reverted
-        setTimeout(function () {
-          submitPetButton.innerText = "Restart?";
-          submitPetButton.classList.remove("green-outline");
-        }, 3000);
-
-        // ELSE API FAILS: ERROR CODE XXX
-      }
 
      
     </script>
