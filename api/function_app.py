@@ -17,7 +17,7 @@ def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document])
 
     if walker_firstname and walker_lastname and walker_location and walker_phonenumber and walker_email:
         WalkerDocument.set(func.Document.from_dict({"id": walker_id, "walker_firstname": walker_firstname, "walker_lastname": walker_lastname, "walker_location": walker_location, "walker_phonenumber": walker_phonenumber, "walker_email": walker_email}))
-        return func.HttpResponse(f"stored details: {walker_id}\n{walker_firstname}\n{walker_lastname}\n{walker_location}\n{walker_phonenumber}\n{walker_email}\n")
+        return func.HttpResponse(status_code=204)
     else:
         return func.HttpResponse(status_code = 400)
 
@@ -46,5 +46,5 @@ def createWoofer(req: func.HttpRequest, WooferDocument: func.Out[func.Document])
         WooferDocument.set(func.Document.from_dict({"id": woofer_id, "woofername": woofer_name, "wooferbreed": woofer_breed, "ownerfirstname": owner_firstname, "ownerlastname": owner_lastname, "ownerhousenumber": owner_housenumber, "ownerlocation": owner_location, "ownerpostcode": owner_postcode, "ownerphonenumber": owner_phonenumber, "owneremail": owner_email}))
         return func.HttpResponse(f"stored details: {woofer_id}\n{woofer_name}\n{woofer_breed}\n{owner_firstname}\n{owner_lastname}\n{owner_housenumber}\n{owner_location}\n{owner_postcode}\n{owner_phonenumber},\n{owner_email}")
     else:
-        return func.HttpResponse("unable to run function you melt", status_code = 200)
+        return func.HttpResponse("unable to run function you melt", status_code = 400)
 
