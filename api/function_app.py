@@ -21,3 +21,30 @@ def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document])
     else:
         return func.HttpResponse("unable to run function you melt", status_code = 200)
 
+
+
+
+
+@app.function_name(name="postregisterwoofer")
+@app.route(route="postregisterwoofer", auth_level=func.AuthLevel.ANONYMOUS)
+@app.cosmos_db_output(arg_name="WooferDocument", database_name="waggly-database", container_name="waggly_container", connection="CosmosDbConnectionSetting")
+
+def createWoofer(req: func.HttpRequest, WooferDocument: func.Out[func.Document]) -> func.HttpResponse:
+    woofer_id = str(uuid.uuid4())
+    woofer_name = req.params.get('woofername')
+    woofer_breed = req.params.get('wooferbreed')
+    owner_firstname = req.params.get('ownerfirstname')
+    owner_lastname = req.params.get('ownerlastname')
+    owner_housenumber = req.params.get('ownerhousenumber')
+    owner_location = req.params.get('ownerlocation')
+    owner_postcode = req.params.get('ownerpostcode')
+    owner_phonenumber = req.params.get('ownerphonenumber')
+    owner_email = req.params.get('owneremail')
+
+
+    if woofer_name and woofer_breed and owner_firstname and owner_lastname and owner_housenumber and owner_location and owner_postcode and owner_phonenumber and owner_email:
+        WooferDocument.set(func.Document.from_dict({"id": woofer_id, "woofername": woofer_name, "wooferbreed": woofer_breed, "ownerfirstname": owner_firstname, "ownerlastname": owner_lastname, "ownerhousenumber": owner_housenumber, "ownerlocation": owner_location, "ownerpostcode": owner_postcode, "ownerphonenumber": owner_phonenumber, "owneremail": owner_email}))
+        return func.HttpResponse(f"stored details: {woofer_id}\n{woofer_name}\n{woofer_breed}\n{owner_firstname}\n{owner_lastname}\n{owner_housenumber}\n{owner_location}\n{owner_postcode}\n{owner_phonenumber},\n{owner_email}")
+    else:
+        return func.HttpResponse("unable to run function you melt", status_code = 200)
+

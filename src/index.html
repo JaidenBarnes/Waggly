@@ -75,11 +75,11 @@
 
     <section>
       <!--Pet Form-->
-      <form id="PetForm" action="/submit" method="post">
+      <form id="PetForm" action="https://wagglyfunctions.azurewebsites.net/api/postregisterwoofer" method="get, post">
         <h3>Create Woofer</h3>
         <input
           type="text"
-          name="PetName"
+          name="woofername"
           id="petName"
           placeholder="Pet Name"
           required
@@ -88,7 +88,7 @@
         />
         <input
           type="text"
-          name="PetBreed"
+          name="wooferbreed"
           id="petBreed"
           placeholder="Pet Breed"
           required
@@ -97,7 +97,7 @@
         />
         <input
           type="text"
-          name="OwnerFirstName"
+          name="ownerfirstname"
           id="OwnerfirstName"
           placeholder="Owner First Name"
           required
@@ -106,7 +106,7 @@
         />
         <input
           type="text"
-          name="OwnerLastName"
+          name="ownerlastname"
           id="OwnerlastName"
           placeholder="Owner Last Name"
           required
@@ -115,21 +115,21 @@
         />
         <input
           type="text"
-          name="HouseNumber"
+          name="ownerhousenumber"
           id="houseNumber"
           placeholder="House Number"
           required
         />
         <input
           type="text"
-          name="Location"
+          name="ownerlocation"
           id="location"
           placeholder="Location"
           required
         />
         <input
           type="text"
-          name="Postcode"
+          name="ownerpostcode"
           id="postcode"
           placeholder="Postcode"
           required
@@ -138,7 +138,7 @@
         />
         <input
           type="tel"
-          name="PhoneNumber"
+          name="ownerphonenumber"
           id="phoneNumber"
           placeholder="Phone Number"
           required
@@ -147,16 +147,16 @@
         />
         <input
           type="email"
-          name="Email"
+          name="owneremail"
           id="email"
           placeholder="Email"
           required
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
           title="Please enter a valid email address"
         />
-        <button type="button" id="submitPetButton" onclick="validatePetForm()">
-          Submit
-        </button>
+        <button
+          type="submit"
+          id="submitWooferButton" >Submit</button>
       </form>
       
 
