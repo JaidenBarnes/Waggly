@@ -1,5 +1,6 @@
 import azure.functions as func
 import uuid
+import logging
 
 app = func.FunctionApp()
 
