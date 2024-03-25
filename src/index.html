@@ -212,10 +212,12 @@
         // Submit data to DB if Validation is confirmed freeze input then call API
         if (WalkerFormValid) {
           for (var i = 0; i < inputs.length; i++) {
-          inputs[i].disabled = true;
+            inputs[i].disabled = true;
+          }
+        } else {
+          return;
         }
-        }
-      }
+
 
 
         document.getElementById("WalkerForm").addEventListener("submit", function(event) {
