@@ -5,7 +5,7 @@ import logging
 app = func.FunctionApp()
 
 @app.function_name(name="postregisterwalker")
-@app.route(route="postregisterwalker", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="postregisterwalker", methods=['GET'], auth_level=func.AuthLevel.ANONYMOUS)
 @app.cosmos_db_output(arg_name="WalkerDocument", database_name="waggly-database", container_name="waggly_container", connection="CosmosDbConnectionSetting")
 
 def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document]) -> func.HttpResponse:
@@ -25,7 +25,7 @@ def createWalker(req: func.HttpRequest, WalkerDocument: func.Out[func.Document])
 
 
 @app.function_name(name="postregisterwoofer")
-@app.route(route="postregisterwoofer", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="postregisterwoofer", methods=['GET'], auth_level=func.AuthLevel.ANONYMOUS)
 @app.cosmos_db_output(arg_name="WooferDocument", database_name="waggly-database", container_name="waggly_container", connection="CosmosDbConnectionSetting")
 
 def createWoofer(req: func.HttpRequest, WooferDocument: func.Out[func.Document]) -> func.HttpResponse:
