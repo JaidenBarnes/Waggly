@@ -35,6 +35,27 @@ View tab > Command Pallette > type and select:
     /src
 
 ---
+!!!!!!!!!!!!!!!!!!!!!!!!
+DON'T THINK THIS IS NEEDED!!! --> There is already a function_app.py file containing x2 functions,
+postregisterdogwalker and postregisterwoofer, suggesting only the 'deploy to Azure Functions' is needed.
+
+View tab > Command Pallette > type 'Azure Static Web Apps: Create HTTP Function...' > then:
+>Language: Python
+>
+>Python Programming Model: Model V2
+>
+>Python Interpreter: python 3.11
+>
+>Function Name:
+
+    postregisterwalker
+    
+>Authorisation level: ANONYMOUS
+
+** Also, if needed, then postregisterwoofer would be needed too
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+---
 **3. Create Function App**
 
 Azure tab > Resources > click '+' > click 'Create Function App in Azure...' > enter:
