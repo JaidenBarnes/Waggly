@@ -1,11 +1,16 @@
-                                                Web Application Self-deployment Instructions
+                             Web Application Self-deployment Instructions
 **1. Clone project:**
 
 Open VS Code
 >Clone git repository > enter:
     
     https://github.com/JaidenBarnes/Waggly.git
->Choose project save destination into a new folder named 'Waggly'
+>Choose project save destination into a new folder named:
+
+    Waggly
+
+An error will appear, 'failed to locate virtual environment', click 'create' then select:
+>python 3.11
 
 ---
 **2. Create Static Web App**
@@ -30,7 +35,9 @@ View tab > Command Pallette > type and select:
     /src
 
 ---
-DON'T THINK THIS IS NEEDED!!! --> Oh god it might be...!!!!!!!!!!!!!!!!!!!! --> But its existance in github suggests not
+!!!!!!!!!!!!!!!!!!!!!!!!
+DON'T THINK THIS IS NEEDED!!! --> There is already a function_app.py file containing x2 functions,
+postregisterdogwalker and postregisterwoofer, suggesting only the 'deploy to Azure Functions' is needed.
 
 View tab > Command Pallette > type 'Azure Static Web Apps: Create HTTP Function...' > then:
 >Language: Python
@@ -45,8 +52,8 @@ View tab > Command Pallette > type 'Azure Static Web Apps: Create HTTP Function.
     
 >Authorisation level: ANONYMOUS
 
-** Copy python script into the python file???
 ** Also, if needed, then postregisterwoofer would be needed too
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ---
 **3. Create Function App**
@@ -119,16 +126,17 @@ View (menu bar) > Command Pallete > type and select:
 
 >Note: The connection string in 'Waggly/api/local.settings.json' has been generated and 'function_app.py''s connection settings should now be accurate.
 
-**Deploy Function to Azure:**
+---
+**6. Deploy & Commit Changes**
     
 Azure tab > Resources > Expand 'Function App' > right click 'wagglyFunctions' > choose 'Deploy to Function App...'
 
-**Commit changes to github:**
+Then,
     
 Source Control tab > type [commit message] > click commit > click sync
 
 ---
-**6. Visit Web Application**
+**7. Visit Web Application**
 
 Open Azure portal at:
 
