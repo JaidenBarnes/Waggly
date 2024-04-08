@@ -1,21 +1,24 @@
-                             Web Application Self-deployment Instructions
+                  Web Application Self-deployment Instructions
+                            
+    NOTE: Please utilise the copy button for speed and accuracy efficiency
+
 **1. Cloning the project**
 
 On your PC, create a folder named:
 
     Waggly
 
-Inside the 'Waggly' folder, create another folder named:
+Inside the 'Waggly' folder, create a folder named:
 
     src
     
-In the GitHub repository, Open the 'src' folder located at:
+In the GitHub repository, open the 'src' folder located at:
     
     https://github.com/JaidenBarnes/Waggly/tree/main/src
 
 Right click + 'Download Linked File' for both the 'index.html' & 'styles.css' files then,
 
-Move both files into the previously created 'src' folder created
+Move both files into the previously created local 'src' folder
 
 Your local folder should now contain:
 >Waggly > src > index.html & styles.css
@@ -44,27 +47,6 @@ View tab > Command Pallette > type and select:
 > Application build ouput location:
 
     /src
-
----
-!!!!!!!!!!!!!!!!!!!!!!!!
-DON'T THINK THIS IS NEEDED!!! --> There is already a function_app.py file containing x2 functions,
-postregisterdogwalker and postregisterwoofer, suggesting only the 'deploy to Azure Functions' is needed.
-
-View tab > Command Pallette > type 'Azure Static Web Apps: Create HTTP Function...' > then:
->Language: Python
->
->Python Programming Model: Model V2
->
->Python Interpreter: python 3.11
->
->Function Name:
-
-    postregisterwalker
-    
->Authorisation level: ANONYMOUS
-
-** Also, if needed, then postregisterwoofer would be needed too
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ---
 **3. Create Function App**
