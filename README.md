@@ -128,6 +128,8 @@ Then,
     
 Source Control tab > type [commit message] > click commit > click sync
 
+Ensure your GitHub repository is building the application under GitHub.com > [Waggly] > Actions
+
 ---
 **7. Visit Web Application**
 
@@ -139,4 +141,4 @@ Open Azure portal at:
 >
 >Open Waggly
 >
->The overview tab contains a URL to the web application
+>The overview tab contains a URL to the web application, open this link.
