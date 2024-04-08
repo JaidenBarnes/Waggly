@@ -1,6 +1,6 @@
                   Web Application Self-deployment Instructions
                             
-    NOTE: Please utilise the copy button for speed and accuracy efficiency
+    NOTE: Please utilise the copy buttons for speed and accuracy efficiency ----------->
 
 **1. Cloning the project**
 
