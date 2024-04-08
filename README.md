@@ -1,16 +1,27 @@
                              Web Application Self-deployment Instructions
-**1. Clone project**
+**1. Cloning the project**
 
-Open VS Code
->Clone git repository > enter:
-    
-    https://github.com/JaidenBarnes/Waggly.git
->Choose project save destination into a new folder named:
+On your PC, create a folder named:
 
     Waggly
 
-An error will appear, 'failed to locate virtual environment', click 'create' then select:
->python 3.11
+Inside the 'Waggly' folder, create another folder named:
+
+    src
+    
+In the GitHub repository, Open the 'src' folder located at:
+    
+    https://github.com/JaidenBarnes/Waggly/tree/main/src
+
+Right click + 'Download Linked File' for both the 'index.html' & 'styles.css' files then,
+
+Move both files into the previously created 'src' folder created
+
+Your local folder should now contain:
+>Waggly > src > index.html & styles.css
+
+Open Visual Studio Code and open the Waggly folder to begin the project
+
 
 ---
 **2. Create Static Web App**
