@@ -1,7 +1,5 @@
                   Web Application Self-deployment Instructions
                             
-    NOTE: Please utilise the copy buttons for speed and accuracy efficiency ----------->
----
 Working prototype:
     
     https://lively-pond-0095bf203.4.azurestaticapps.net
